@@ -50,3 +50,48 @@ dpkg --list
 If you want to check if a specific software (e.g., Java) is installed, you can search for it:
 
 yum list installed | grep java
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+To install Oracle JDK 11 on a Red Hat-based Linux system, follow the steps below:
+
+1. Download Oracle JDK 11:
+Go to the Oracle JDK 11 Downloads page (https://www.oracle.com/java/technologies/downloads/#java11 ) and download the .rpm package for Linux. You can also download it via the terminal using wget.
+
+For example, run the command to download the JDK 11 .rpm (update the link if necessary):
+
+wget https://download.oracle.com/java/11/latest/jdk-11_linux-x64_bin.rpm
+
+2. Install Oracle JDK 11:
+Once downloaded, install the .rpm package using yum:
+
+sudo yum localinstall jdk-11_linux-x64_bin.rpm
+
+3. Set Oracle JDK 11 as the Default JDK:
+Configure Oracle JDK 11 as the default Java version using the alternatives system:
+
+sudo alternatives --install /usr/bin/java java /usr/java/jdk-11/bin/java 2000
+You can switch between installed versions of Java by running:
+
+sudo alternatives --config java
+Select Oracle JDK 11 from the list.
+
+4. Verify the Installation:
+Check that Oracle JDK 11 is correctly installed and set as the default:
+
+java -version
+You should see output like:
+
+
+java version "11.0.17" 2024-XX-XX LTS
+Java(TM) SE Runtime Environment (build 11.0.17+8-LTS)
+Java HotSpot(TM) 64-Bit Server VM (build 11.0.17+8-LTS, mixed mode)
+
+5. Set JAVA_HOME Environment Variable (Optional):
+To set the JAVA_HOME environment variable for Oracle JDK 11:
+
+
+export JAVA_HOME=/usr/java/jdk-11
+export PATH=$JAVA_HOME/bin:$PATH
+
+You can add these lines to ~/.bashrc or ~/.bash_profile to make the changes permanent:
