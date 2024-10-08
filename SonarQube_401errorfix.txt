@@ -1,0 +1,35 @@
+# Pastethe below contents in code sonar-projects.properties
+# Required metadata
+sonar.projectKey=org.sonarqube:scmgalaxy1
+sonar.projectName=NokiaX
+sonar.projectVersion=1.0
+
+# Comma-separated paths to directories with sources (required)
+sonar.sources=src
+
+# Authentication (optional; it's better to use tokens instead of username/password for security)
+sonar.login=admin
+sonar.password=Deepak@12345
+
+# Optional: Profile name (if you have specific quality profiles)
+# sonar.profile=NokiaProfile
+
+# Language
+sonar.language=java
+
+# Specify the path for compiled binaries (change if needed)
+sonar.java.binaries=compiled
+
+# Encoding of the source files
+sonar.sourceEncoding=UTF-8
+
+# Optional: Exclude specific files or directories from analysis
+# sonar.exclusions=**/generated/**, **/build/**
+
+# Optional: Configure test paths if you have test files
+# sonar.tests=test
+# sonar.junit.reportPaths=test-reports
+
+# Optional: Define Java version
+sonar.java.source=17
+sonar.java.target=17
