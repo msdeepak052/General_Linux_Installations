@@ -33,6 +33,10 @@ sudo alternatives --config java
 
 5. To remove Java from a Red Hat Linux machine, you can use the following commands:
 
+ rpm -qa | grep jdk
+jdk1.8.0_131-1.8.0_131-fcs.x86_64
+ yum remove jdk1.8.0_131*
+
 6. Remove Java 8:
 
 sudo yum remove java-1.8.0-openjdk*
