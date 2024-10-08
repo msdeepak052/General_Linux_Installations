@@ -1,0 +1,52 @@
+## Java Installation Redhat##
+
+Update your packages before installing Java
+ 
+sudo yum update -y
+
+To install both Java 8 and Java 11 on a Red Hat Linux machine, you can use the following commands:
+
+1. Install Java 8:
+
+sudo yum install java-1.8.0-openjdk-devel
+
+2. Install Java 11:
+
+sudo yum install java-11-openjdk-devel
+
+3. Check installed versions:
+
+After installation, you can verify the installed versions with:
+
+java -version
+
+4. Switch between Java versions:
+
+To switch between the installed versions, use the alternatives command:
+
+sudo alternatives --config java
+
+5. To remove Java from a Red Hat Linux machine, you can use the following commands:
+
+6. Remove Java 8:
+
+sudo yum remove java-1.8.0-openjdk*
+
+7. Remove Java 11:
+
+sudo yum remove java-11-openjdk*
+
+8.To check which packages or software are installed on your Linux system, you can use the following commands, depending on your package manager.
+
+For Red Hat-based systems(using yum)
+Using yum:
+yum list installed
+
+For Debian-based systems (using apt):
+
+dpkg --list
+
+9. To check specific installed software:
+If you want to check if a specific software (e.g., Java) is installed, you can search for it:
+
+yum list installed | grep java
