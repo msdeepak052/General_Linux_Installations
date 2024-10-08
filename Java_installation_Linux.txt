@@ -4,6 +4,11 @@ Update your packages before installing Java
  
 sudo yum update -y
 
+Identify the Package Name
+List Installed Packages: First, check the installed JDK packages to find the exact name. Run the following command:
+
+rpm -qa | grep jdk
+
 To install both Java 8 and Java 11 on a Red Hat Linux machine, you can use the following commands:
 
 1. Install Java 8:
