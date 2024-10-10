@@ -1,0 +1,36 @@
+𝟏. 𝐈𝐧𝐝𝐞𝐧𝐭𝐚𝐭𝐢𝐨𝐧
+
+In the vi or vim editor, you can use the following shortcuts to indent lines of code or text:
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Indenting a Single Line:
+Place the cursor on the line you want to indent and press >> to indent it to the right.
+To indent it to the left, press <<.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Indenting Multiple Lines:
+First, enter Visual Line mode by pressing V.
+Use the arrow keys or j/k to select the lines you want to indent.
+Press > to indent the selected lines to the right.
+Press < to indent the selected lines to the left.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Indenting with a Specific Number of Spaces:
+You can also specify the number of spaces to indent. For example, to indent a line by 3 spaces, you can type 3>> while the cursor is on the line.
+  
+Using the Command Mode:
+You can also use command mode to indent a range of lines. For example, to indent lines 10 to 20, you can type:
+
+:10,20>
+  
+To indent them back to the left, you can use:
+
+:10,20<
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Auto-Indenting:
+If you want to auto-indent the entire file, you can use the command:
+
+gg=G
+  
+This command will go to the beginning of the file (gg), auto-indent the current line (=), and then go to the end of the file (G).
+These shortcuts should help you manage indentation effectively in vi or vim.
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
