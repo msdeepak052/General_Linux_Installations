@@ -1,0 +1,82 @@
+Integrating SonarQube with Jenkins allows you to perform continuous inspection of your code quality. Below is a step-by-step guide to set up SonarQube with Jenkins.
+
+Prerequisites
+Jenkins Installed: Ensure you have Jenkins installed and running.
+SonarQube Installed: Ensure you have SonarQube installed and running. You can use the SonarQube Docker image for easy setup.
+SonarQube Scanner: You need to have the SonarQube Scanner installed or use the one provided by the SonarQube server.
+
+Step 1: Install SonarQube Plugin in Jenkins
+
+Open Jenkins: Go to your Jenkins dashboard.
+Manage Jenkins: Click on "Manage Jenkins" from the left sidebar.
+Manage Plugins: Click on "Manage Plugins".
+Available Tab: Go to the "Available" tab and search for "SonarQube Scanner".
+Install: Check the box next to "SonarQube Scanner" and click on "Install without restart".
+
+Step 2: Configure SonarQube in Jenkins
+
+Manage Jenkins: Go back to "Manage Jenkins".
+Configure System: Click on "Configure System".
+SonarQube Servers: Scroll down to the "SonarQube servers" section.
+Click on "Add SonarQube".
+Name: Give it a name (e.g., "SonarQube Server").
+Server URL: Enter the URL of your SonarQube server (e.g., http://localhost:9000).
+Server Authentication Token: If you have set up authentication, enter the token. You can generate a token in SonarQube under your user account settings.
+Save: Click "Save" at the bottom of the page.
+
+Step 3: Configure SonarQube Scanner
+
+Manage Jenkins: Go back to "Manage Jenkins".
+Global Tool Configuration: Click on "Global Tool Configuration".
+SonarQube Scanner: Scroll down to the "SonarQube Scanner" section.
+Click on "Add SonarQube Scanner".
+Name: Give it a name (e.g., "SonarQube Scanner").
+Install automatically: Check this option to install the scanner automatically.
+Save: Click "Save" at the bottom of the page.
+
+Step 4: Create a New Jenkins Job
+
+New Item: Go back to the Jenkins dashboard and click on "New Item".
+Enter Item Name: Give your job a name (e.g., "MyProject").
+Select Freestyle Project: Choose "Freestyle project" and click "OK".
+
+Step 5: Configure the Job
+
+Source Code Management: Configure your source code repository (e.g., Git).
+Select "Git" and enter the repository URL.
+Build Triggers: Set up any build triggers you need (e.g., Poll SCM).
+Build Environment: You can set up any build environment settings if needed.
+Build Steps:
+Click on "Add build step" and select "Invoke Standalone SonarQube Analyzer".
+SonarQube Scanner: Select the SonarQube Scanner you configured earlier.
+Analysis Properties: You can specify the properties for the analysis. Here’s an example of what you might include:
+properties
+
+
+sonar.projectKey=myproject
+sonar.projectName=My Project
+sonar.projectVersion=1.0
+sonar.sources=src
+sonar.language=java
+sonar.sourceEncoding=UTF-8
+Adjust the properties according to your project structure and requirements.
+
+Step 6: Save and Build
+
+Save: Click "Save" to save your job configuration.
+Build Now: Go back to the job page and click on "Build Now" to trigger a build.
+
+Step 7: View Results in SonarQube
+SonarQube Dashboard: After the build completes, go to your SonarQube dashboard.
+Project Overview: You should see your project listed there. Click on it to view the analysis results.
+Example of a Complete Configuration
+Here’s an example of what your sonar-project.properties file might look like:
+
+properties
+
+sonar.projectKey=myproject
+sonar.projectName=My Project
+sonar.projectVersion=1.0
+sonar.sources=src
+sonar.tests=test
+sonar.language
