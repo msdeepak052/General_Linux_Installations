@@ -41,3 +41,32 @@ Change Jenkins URL to current Jenkins URL:
 Click on Apply-> Save.
 
 that's it. You will notice Jenkins is performing well now.
+
+
+--------------------------------------------------------------
+Third Option
+--------------------------------------------------------------
+
+Add the below script in the user data of the ec2 instance
+
+#!/bin/bash
+
+# Fetch the public IP address of the EC2 instance
+EC2_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
+
+# Path to the Jenkins configuration file
+JENKINS_CONFIG_FILE="/var/lib/jenkins/jenkins.model.JenkinsLocationConfiguration.xml"
+
+# Backup the original configuration file
+sudo cp "$JENKINS_CONFIG_FILE" "$JENKINS_CONFIG_FILE.bak"
+
+# Modify the Jenkins configuration file
+sudo sed -i "s|<adminAddress>.*</adminAddress>|<adminAddress>address not configured yet &lt;nobody@nowhere&gt;</adminAddress>|" "$JENKINS_CONFIG_FILE"
+sudo sed -i "s|<jenkinsUrl>.*</jenkinsUrl>|<jenkinsUrl>http://$EC2_IP:8080/</jenkinsUrl>|" "$JENKINS_CONFIG_FILE"
+
+# Restart Jenkins
+sudo systemctl start jenkins
+
+# Output the current Jenkins URL
+echo "Jenkins URL updated to: http://$EC2_IP:8080/"
+
