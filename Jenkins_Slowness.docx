@@ -57,16 +57,24 @@ EC2_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
 # Path to the Jenkins configuration file
 JENKINS_CONFIG_FILE="/var/lib/jenkins/jenkins.model.JenkinsLocationConfiguration.xml"
 
-# Backup the original configuration file
-sudo cp "$JENKINS_CONFIG_FILE" "$JENKINS_CONFIG_FILE.bak"
+# Backup the original configuration file if it exists
+if [ -f "$JENKINS_CONFIG_FILE" ]; then
+    sudo cp "$JENKINS_CONFIG_FILE" "$JENKINS_CONFIG_FILE.bak"
+else
+    echo "Jenkins configuration file not found!"
+    exit 1
+fi
 
 # Modify the Jenkins configuration file
 sudo sed -i "s|<adminAddress>.*</adminAddress>|<adminAddress>address not configured yet &lt;nobody@nowhere&gt;</adminAddress>|" "$JENKINS_CONFIG_FILE"
 sudo sed -i "s|<jenkinsUrl>.*</jenkinsUrl>|<jenkinsUrl>http://$EC2_IP:8080/</jenkinsUrl>|" "$JENKINS_CONFIG_FILE"
 
 # Restart Jenkins
-sudo systemctl start jenkins
+if sudo systemctl is-active --quiet jenkins; then
+    sudo systemctl restart jenkins
+else
+    sudo systemctl start jenkins
+fi
 
 # Output the current Jenkins URL
 echo "Jenkins URL updated to: http://$EC2_IP:8080/"
-
