@@ -2,9 +2,9 @@ Login as a root user
 sudo su -
 cd /opt
 yum install tar wget -y
-wget http://download.sonatype.com/nexus/3/nexus-3.15.2-01-unix.tar.gz
-tar -zxvf nexus-3.15.2-01-unix.tar.gz
-mv /opt/nexus-3.15.2-01 /opt/nexus
+wget https://download.sonatype.com/nexus/3/nexus-3.77.2-02-unix.tar.gz
+tar -zxvf nexus-3.77.2-02-unix.tar.gz
+mv /opt/nexus-3.77.2-02 /opt/nexus
 
 #As a good security practice, Nexus is not advised to run nexus service as a root user, so create a new user called nexus and grant sudo access to manage nexus services as follows.
  
@@ -14,6 +14,11 @@ useradd nexus
 
 visudo
 nexus ALL=(ALL) NOPASSWD: ALL
+
+or 
+
+echo "nexus ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
+
 
 #Change the owner and group permissions to /opt/nexus and /opt/sonatype-work directories.
 
@@ -26,6 +31,11 @@ chmod -R 775 /opt/sonatype-work
 
 vi /opt/nexus/bin/nexus.rc
 run_as_user="nexus"
+
+or
+
+sed -i 's/^#run_as_user="".*/run_as_user="nexus"/' /opt/nexus/bin/nexus.rc
+
 
 #Create nexus as a service
 
