@@ -2,6 +2,7 @@ Login as a root user
 sudo su -
 cd /opt
 yum install tar wget -y
+yum install java-17-openjdk* -y
 wget https://download.sonatype.com/nexus/3/nexus-3.77.2-02-unix.tar.gz
 tar -zxvf nexus-3.77.2-02-unix.tar.gz
 mv /opt/nexus-3.77.2-02 /opt/nexus
