@@ -8,3 +8,38 @@ And run:
 
 sudo systemctl daemon-reload && sudo systemctl restart jenkins
 And then try to access. It will work.
+
+
+-----------------------------------------------------------------
+
+The error message you're encountering indicates that the directory /etc/systemd/system/jenkins.service.d/ does not exist, which is preventing you from creating an override configuration for the Jenkins service.
+
+To resolve this issue, you can manually create the necessary directory structure before editing the service configuration. Here are the steps you can follow:
+
+Create the directory:
+You need to create the jenkins.service.d directory. You can do this with the following command:
+bash
+
+Copy Code
+sudo mkdir -p /etc/systemd/system/jenkins.service.d/
+The -p option ensures that the parent directories are created as needed.
+Edit the service configuration:
+After creating the directory, you can now edit the Jenkins service configuration using:
+bash
+
+Copy Code
+sudo systemctl edit jenkins
+This command will open a text editor where you can add your override settings.
+Reload the systemd manager configuration:
+After making changes, you should reload the systemd configuration to apply the changes:
+bash
+
+Copy Code
+sudo systemctl daemon-reload
+Restart the Jenkins service (if necessary):
+If your changes require the Jenkins service to be restarted, you can do so with:
+bash
+
+Copy Code
+sudo systemctl restart jenkins
+By following these steps, you should be able to successfully create an override configuration for the Jenkins service.
