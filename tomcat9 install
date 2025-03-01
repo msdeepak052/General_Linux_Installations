@@ -1,0 +1,24 @@
+sudo su -
+cd /opt
+yum install tar wget -y
+
+wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.73/bin/apache-tomcat-9.0.73.tar.gz
+sudo tar xzf apache-tomcat-9.0.73.tar.gz
+
+
+sudo mv apache-tomcat-9.0.73 tomcat9
+
+sudo chown -R ec2-user:ec2-user /opt/tomcat9
+
+cd /opt/tomcat9/bin
+./startup.sh
+
+add the users 
+
+cd /opt/tomcat9/conf
+vi tomcat-users.xml
+
+    <role rolename="manager-gui"/>
+    <role rolename="admin-gui"/>
+    <user username="admin" password="admin" roles="manager-gui,admin-gui,manager-script"/>
+    <user username="tomcat" password="tomcat" roles="manager-gui,admin-gui,manager-script"/></tomcat-users>
