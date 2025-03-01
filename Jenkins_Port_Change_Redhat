@@ -1,0 +1,10 @@
+Perform change at /usr/lib/systemd/system/jenkins.service:
+
+sudo vi /usr/lib/systemd/system/jenkins.service
+Update like this:
+
+Environment="JENKINS_PORT=6111"
+And run:
+
+sudo systemctl daemon-reload && sudo systemctl restart jenkins
+And then try to access. It will work.
