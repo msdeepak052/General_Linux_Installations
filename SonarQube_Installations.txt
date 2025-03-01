@@ -1,0 +1,72 @@
+sudo su -
+
+yum install java_11_openjdk* -y
+
+cd /opt 
+yum install wget unzip -y
+
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.6.1.59531.zip
+
+unzip sonarqube-9.6.1.59531.zip
+
+mv sonarqube-9.6.1.* sonarqube
+
+useradd sonar
+
+visudo 
+
+sonar   ALL=(ALL)    NOPASSWD: ALL
+
+
+chown -R SONAR:SONAR /opt/sonarqube
+chmod R 775 /opt/sonarqube/
+
+su - sonar
+
+cd /opt/sonarqube/bin/linux-x86-64
+
+./sonar.sh start
+
+
+--------------------------------------------------------------------------------
+
+Shell Script
+--------------
+
+#!/bin/bash
+
+# Switch to root user
+sudo su - <<EOF
+
+# Install Java OpenJDK 11
+yum install java-11-openjdk* -y
+
+# Change to /opt directory
+cd /opt 
+
+# Install wget and unzip
+yum install wget unzip -y
+
+# Download SonarQube
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.6.1.59531.zip
+
+# Unzip the downloaded file
+unzip sonarqube-9.6.1.59531.zip
+
+# Rename the extracted directory
+mv sonarqube-9.6.1.* sonarqube
+
+# Create a new user for SonarQube
+useradd sonar
+
+# Edit sudoers file to allow sonar user to run commands without a password
+echo "sonar   ALL=(ALL)    NOPASSWD: ALL" >> /etc/sudoers
+
+# Change ownership and permissions for SonarQube directory
+chown -R sonar:sonar /opt/sonarqube
+chmod -R 775 /opt/sonarqube/
+
+# Switch to sonar user
+su - sonar -c "cd /opt/sonarqube/bin/linux-x86-64 && ./sonar.sh start"
+
+EOF
