@@ -54,7 +54,7 @@ wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.6.1.595
 unzip sonarqube-9.6.1.59531.zip
 
 # Rename the extracted directory
-mv sonarqube-9.6.1.* sonarqube
+mv /opt/sonarqube-9.6.1.* /opt/sonarqube
 
 # Create a new user for SonarQube
 useradd sonar
