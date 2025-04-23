@@ -18,11 +18,13 @@ add the users
 cd /opt/tomcat9/conf
 vi tomcat-users.xml
 
- <role rolename="manager-gui"/>
+  <role rolename="manager-gui"/>
     <role rolename="admin-gui"/>
     <role rolename="manager-script"/>
-    <user username="admin" password="admin" roles="manager-gui,admin-gui,manager-script"/>
-    <user username="tomcat" password="tomcat" roles="manager-gui,admin-gui,manager-script"/></tomcat-users>
+    <role rolename="manager-jmx"/>
+    <role rolename="manager-status"/>
+    <user username="admin" password="admin" roles="manager-gui,admin-gui,manager-script,manager-jmx,manager-status"/>
+    <user username="tomcat" password="tomcat" roles="manager-gui,admin-gui,manager-script,manager-jmx,manager-status"/>
 
 cd /opt/tomcat9/webapps/manager/META-INF
 vi context.xml
