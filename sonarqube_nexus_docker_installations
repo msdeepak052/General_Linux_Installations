@@ -1,0 +1,169 @@
+Installing SonarQube using Docker is a straightforward process. Below are the steps to get SonarQube up and running in a Docker container.
+
+Prerequisites
+Docker: Ensure you have Docker installed on your machine. You can download it from Docker's official website.
+sudo apt install docker.io -y
+chmod -R 777 /var/run/docker.sock
+
+Steps to Install SonarQube
+
+Step 1: Pull the SonarQube Docker Image
+You can pull the latest SonarQube image from Docker Hub. Open your terminal and run:
+
+docker pull sonarqube:9.6-commnity
+
+
+Step 3: Run SonarQube Container
+You can run SonarQube using the following command. This example uses the default PostgreSQL database.
+
+bash
+
+Copy Code
+docker run -d --name sonarqube \
+  -p 9000:9000 \
+  sonarqube:.6-community
+  
+-d: Run the container in detached mode.
+--name sonarqube: Name the container "sonarqube".
+-p 9000:9000: Map port 9000 of the container to port 9000 on your host.
+--network sonarnet: Connect the container to the sonarnet network.
+
+Step 4: Wait for SonarQube to Start
+It may take a few minutes for SonarQube to start up. You can check the logs to see the progress:
+
+docker logs -f sonarqube
+
+Step 5: Access SonarQube
+Once the container is running, you can access SonarQube by navigating to http://localhost:9000 in your web browser.
+
+Step 6: Default Credentials
+The default login credentials are:
+
+Username: admin
+Password: admin
+Make sure to change the default password after your first login.
+
+
+Step 7: Stopping and Removing the Container
+To stop the SonarQube container, run:
+
+bash
+
+Copy Code
+docker stop sonarqube
+To remove the container, run:
+
+
+Copy Code
+docker rm sonarqube
+
+Conclusion
+You now have SonarQube running in a Docker container. You can start analyzing your code by configuring projects within the SonarQube interface.
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Nexus repo
+----------
+
+
+Installing Nexus Repository Manager using Docker is a straightforward process. Below are the steps to get Nexus up and running in a Docker container.
+
+Prerequisites
+Docker: Ensure you have Docker installed on your machine. You can download it from Docker's official website.
+Docker Compose (optional): If you want to use Docker Compose for easier management, install it as well.
+Steps to Install Nexus Repository Manager
+Step 1: Pull the Nexus Docker Image
+You can pull the latest Nexus Repository Manager image from Docker Hub. Open your terminal and run:
+
+bash
+
+Copy Code
+docker pull sonatype/nexus3
+Step 2: Create a Docker Network (Optional)
+Creating a dedicated network can help manage your containers better, especially if you plan to use a database or other services.
+
+bash
+
+Copy Code
+docker network create nexus-net
+Step 3: Run Nexus Container
+You can run Nexus using the following command. This example will run Nexus with persistent storage.
+
+bash
+
+Copy Code
+docker run -d -p 8081:8081 --name nexus \
+  --network nexus-net \
+  -v nexus-data:/nexus-data \
+  sonatype/nexus3
+-d: Run the container in detached mode.
+-p 8081:8081: Map port 8081 of the container to port 8081 on your host.
+--name nexus: Name the container "nexus".
+-v nexus-data:/nexus-data: Create a volume for persistent storage of Nexus data.
+--network nexus-net: Connect the container to the nexus-net network.
+Step 4: Wait for Nexus to Start
+It may take a few minutes for Nexus to start up. You can check the logs to see the progress:
+
+bash
+
+Copy Code
+docker logs -f nexus
+Step 5: Access Nexus Repository Manager
+Once the container is running, you can access Nexus by navigating to http://localhost:8081 in your web browser.
+
+Step 6: Default Credentials
+The default login credentials for Nexus Repository Manager are:
+
+Username: admin
+Password: The initial admin password can be found in the logs or in the file located at /nexus-data/admin.password inside the container. You can retrieve it with the following command:
+bash
+
+Copy Code
+docker exec -it nexus cat /nexus-data/admin.password
+Make sure to change the default password after your first login.
+
+Optional: Using Docker Compose
+If you prefer to use Docker Compose, you can create a docker-compose.yml file with the following content:
+
+yaml
+
+Copy Code
+version: '3'
+services:
+  nexus:
+    image: sonatype/nexus3
+    ports:
+      - "8081:8081"
+    networks:
+      - nexus-net
+    volumes:
+      - nexus-data:/nexus-data
+
+volumes:
+  nexus-data:
+
+networks:
+  nexus-net:
+Then, run the following command to start Nexus:
+
+bash
+
+Copy Code
+docker-compose up -d
+Step 7: Stopping and Removing the Container
+To stop the Nexus container, run:
+
+bash
+
+Copy Code
+docker stop nexus
+To remove the container, run:
+
+bash
+
+Copy Code
+docker rm nexus
+Conclusion
+You now have Nexus Repository Manager running in a Docker container. You can start configuring repositories and managing your artifacts through the Nexus interface.
