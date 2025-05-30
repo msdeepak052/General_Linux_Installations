@@ -1,13 +1,12 @@
-* Procedures *
+# Procedures 
+## Openshell Powershell Steps
 
-** Openshell Powershell Steps
-
-*** How to Use This Script:
+### How to Use This Script:
 
   - Save it as install_openssh.ps1
   - Run as Administrator:
 
-'''powershell
+```powershell
 Set-ExecutionPolicy RemoteSigned -Scope Process -Force
 .\install_openssh.ps1
 ```
