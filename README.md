@@ -1,5 +1,5 @@
 # Procedures 
-## Openshell Powershell Steps
+## 1. Openshell Powershell Steps
 
 ### How to Use This Script:
 
