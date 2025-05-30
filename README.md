@@ -5,12 +5,13 @@
 
   - Save it as install_openssh.ps1
   - Run as Administrator:
-  - After running, restart PowerShell if prompted
+ 
 
-```powershell
-Set-ExecutionPolicy RemoteSigned -Scope Process -Force
-.\install_openssh.ps1
-```
+  ```powershell
+  Set-ExecutionPolicy RemoteSigned -Scope Process -Force
+  .\install_openssh.ps1
+  ```
+ - After running, restart PowerShell if prompted
 - Verification
   Test that SSH is working:
 
