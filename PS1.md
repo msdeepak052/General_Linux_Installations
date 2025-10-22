@@ -15,13 +15,17 @@ nano ~/.bashrc
 Add this line at the bottom:
 
 ```bash
-PS1="\[\e[32m\]\u@\h:\w\n↪ \[\e[0m\]"
+# Fancy multi-color prompt with bold username and colored arrow
+PS1="\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\n\[\e[1;33m\]↪ \[\e[0m\]"
+"
 ```
 
 Or a bolder arrow:
 
 ```bash
-PS1="\[\e[32m\]\u@\h:\w\n⮕ \[\e[0m\]"
+# Fancy multi-color prompt with bold username and colored arrow
+PS1="\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\n\[\e[1;33m\]⮕ \[\e[0m\]"
+
 ```
 
 * `\u` → username
